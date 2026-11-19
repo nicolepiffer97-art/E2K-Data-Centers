@@ -6,6 +6,8 @@ const dots = [...carousel.querySelectorAll('.service-dot')];
 const previous = carousel.querySelector('.service-prev');
 const next = carousel.querySelector('.service-next');
 const pagination = carousel.querySelector('.service-pagination');
+const progress = carousel.querySelector('.service-progress');
+const progressFill = progress.firstElementChild;
 const playback = carousel.querySelector('.service-playback');
 const announcement = carousel.querySelector('.service-announcement');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -13,20 +15,33 @@ const rotationDelay = 6000;
 let current = 0;
 let playing = !reducedMotion.matches;
 let hovered = false;
-let timer;
+let rotation;
 
-function scheduleRotation() {
-  window.clearTimeout(timer);
+function syncRotation() {
   if (playing && !hovered && !document.hidden) {
-    timer = window.setTimeout(() => showSlide(current + 1), rotationDelay);
+    rotation.play();
+  } else {
+    rotation.pause();
   }
+}
+
+function resetRotation() {
+  rotation?.cancel();
+  rotation = progressFill.animate(
+    [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+    { duration: rotationDelay, fill: 'both' },
+  );
+  rotation.onfinish = event => {
+    if (event.target === rotation) showSlide(current + 1);
+  };
+  syncRotation();
 }
 
 function setPlayback(enabled) {
   playing = enabled;
   playback.classList.toggle('is-paused', !playing);
   playback.setAttribute('aria-label', playing ? 'Pause automatic rotation' : 'Start automatic rotation');
-  scheduleRotation();
+  syncRotation();
 }
 
 function showSlide(index, announce = false) {
@@ -41,7 +56,7 @@ function showSlide(index, announce = false) {
     const title = slides[current].querySelector('h3').textContent;
     announcement.textContent = `${title}, ${current + 1} of ${slides.length}`;
   }
-  scheduleRotation();
+  resetRotation();
 }
 
 function selectServiceFromHash() {
@@ -54,7 +69,7 @@ function selectServiceFromHash() {
 }
 
 carousel.classList.add('is-enhanced');
-for (const control of [playback, previous, next, pagination]) control.hidden = false;
+for (const control of [playback, previous, next, progress, pagination]) control.hidden = false;
 showSlide(0);
 setPlayback(playing);
 selectServiceFromHash();
@@ -76,15 +91,15 @@ carousel.addEventListener('keydown', event => {
 carousel.addEventListener('pointerenter', event => {
   if (event.pointerType === 'mouse') {
     hovered = true;
-    scheduleRotation();
+    syncRotation();
   }
 });
 carousel.addEventListener('pointerleave', event => {
   if (event.pointerType === 'mouse') {
     hovered = false;
-    scheduleRotation();
+    syncRotation();
   }
 });
-document.addEventListener('visibilitychange', scheduleRotation);
+document.addEventListener('visibilitychange', syncRotation);
 reducedMotion.addEventListener('change', event => setPlayback(!event.matches));
 window.addEventListener('hashchange', selectServiceFromHash);
