@@ -158,7 +158,8 @@ header .nav-contact span { color: inherit; }
 .service-carousel {
   --service-surface: #edf3f8;
   position: relative;
-  max-width: 850px;
+  grid-column: 1 / -1;
+  width: min(100%, 850px);
   margin: 36px auto 0;
 }
 .service-slides {
