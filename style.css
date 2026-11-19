@@ -339,3 +339,10 @@ header .nav-contact span { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .service-carousel.is-enhanced .service-card.is-current { animation: none; }
 }
+
+.about-logo {
+  display: block;
+  width: clamp(138px, 14vw, 186px);
+  height: auto;
+  margin: 0 0 24px;
+}
