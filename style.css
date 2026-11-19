@@ -139,18 +139,7 @@ header #navigation a, header .menu { color: #fff; }
 header #navigation a:hover, header #navigation a:focus-visible,
 header .menu:hover, header .menu:focus-visible { color: var(--orange); }
 .group-photo figcaption {
-  flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  font-size: clamp(20px, 2.1vw, 28px);
-  font-weight: 400;
-  line-height: 1.35;
-}
-
-.group-years {
-  color: var(--orange);
-  font-size: inherit;
-  font-weight: 800;
 }
 
 header .nav-contact span { color: inherit; }
@@ -355,7 +344,6 @@ header .nav-contact span { color: inherit; }
   width: clamp(138px, 14vw, 186px);
   max-width: 100%;
   height: auto;
-  margin: 0 0 20px;
 }
 
 .group-photo + .about-copy {
