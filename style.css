@@ -111,6 +111,7 @@ nav a:hover,.contact-bottom a:hover,footer a:not(.brand):hover{text-decoration:u
   left: 0;
   width: 6px;
   height: 6px;
+  border-radius: 50%;
   background: var(--orange);
 }
 .contact-bottom .inline-group { display: inline; font: inherit; text-decoration: underline; }
