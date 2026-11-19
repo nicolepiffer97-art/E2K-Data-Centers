@@ -99,22 +99,31 @@ nav a:hover,.contact-bottom a:hover,footer a:not(.brand):hover{text-decoration:u
 }
 .benefit-list li {
   border-top: 1px solid var(--line);
-  padding: 18px 0 18px 21px;
+  padding: 20px 0 20px 25px;
   position: relative;
-  font-size: 17px;
+  font-size: clamp(18px, 1.7vw, 23px);
   line-height: 1.45;
 }
 .benefit-list li::before {
   content: "";
   position: absolute;
-  top: 27px;
+  top: calc(16px + .725em);
   left: 0;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--orange);
 }
-.contact-bottom .inline-group { display: inline; font: inherit; text-decoration: underline; }
+.benefit-intro {
+  max-width: 76ch;
+  margin: 0 0 28px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.benefit-list strong {
+  color: var(--blue);
+  font-weight: 800;
+}
 @media (max-width: 720px) {
   .principles article { padding-left: 70px; }
   .principle-icon, .service-icon { width: 50px; height: 56px; }
@@ -349,4 +358,32 @@ header .nav-contact span { color: inherit; }
 
 .group-photo + .about-copy {
   margin-top: clamp(28px, 4vw, 54px);
+}
+
+.safety-partner {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid #ffffff60;
+}
+.safety-partner img { width: 100%; height: auto; }
+.safety-partner p { margin: 0; }
+@media (max-width: 720px) {
+  .safety-partner { grid-template-columns: 64px minmax(0, 1fr); }
+}
+.contact h2 { margin-bottom: 14px; }
+.contact .contact-bottom {
+  display: block;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.contact-bottom a {
+  display: inline-block;
+  margin: 0;
+  font-size: clamp(22px, 3vw, 34px);
+  overflow-wrap: anywhere;
 }
