@@ -346,3 +346,7 @@ header .nav-contact span { color: inherit; }
   height: auto;
   margin: 0 0 24px;
 }
+
+.group-photo + .about-copy {
+  margin-top: clamp(28px, 4vw, 54px);
+}
