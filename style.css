@@ -155,6 +155,12 @@ header .nav-contact span { color: inherit; }
 }
 
 /* Services carousel */
+.services {
+  grid-template-columns: 190px minmax(0, 856px) 190px;
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .services { grid-template-columns: 120px minmax(0, 1fr) 120px; }
+}
 .services .section-heading {
   justify-content: flex-start;
   gap: clamp(20px, 3vw, 42px);
@@ -167,9 +173,9 @@ header .nav-contact span { color: inherit; }
 .service-carousel {
   --service-surface: #edf3f8;
   position: relative;
-  grid-column: 1 / -1;
-  width: min(100%, 850px);
-  margin: 36px auto 0;
+  grid-column: 2;
+  min-width: 0;
+  margin: 36px 0 0;
 }
 .service-slides {
   display: grid;
@@ -208,7 +214,10 @@ header .nav-contact span { color: inherit; }
   font-weight: 300;
   line-height: 1.5;
 }
-.service-card-copy p { margin: 0; }
+.service-card-copy p {
+  margin: 0;
+  font-size: clamp(18px, 1.6vw, 21px);
+}
 .service-card-copy ul {
   width: fit-content;
   margin: 18px auto 0;
@@ -220,7 +229,6 @@ header .nav-contact span { color: inherit; }
 .service-card-copy li::marker { color: var(--orange); }
 .service-carousel.is-enhanced .service-stage {
   position: relative;
-  padding-inline: 48px;
 }
 .service-carousel.is-enhanced .service-card {
   grid-area: 1 / 1;
@@ -252,8 +260,8 @@ header .nav-contact span { color: inherit; }
   top: 50%;
   transform: translateY(-50%);
 }
-.service-prev { left: 0; }
-.service-next { right: 0; }
+.service-prev { left: -48px; }
+.service-next { right: -48px; }
 .service-arrow::before {
   content: "";
   width: 9px;
@@ -297,7 +305,7 @@ header .nav-contact span { color: inherit; }
 }
 .service-playback {
   position: absolute;
-  right: 48px;
+  right: 0;
   bottom: 0;
 }
 .service-playback::before {
@@ -323,11 +331,9 @@ header .nav-contact span { color: inherit; }
   white-space: nowrap;
 }
 @media (max-width: 720px) {
-  .service-carousel.is-enhanced .service-stage { padding-inline: 0; }
   .service-arrow { top: 67px; }
   .service-prev { left: 6px; }
   .service-next { right: 6px; }
-  .service-playback { right: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .service-carousel.is-enhanced .service-card.is-current { animation: none; }
