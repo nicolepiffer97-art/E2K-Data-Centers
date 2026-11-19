@@ -146,3 +146,13 @@ header .menu:hover, header .menu:focus-visible { color: var(--orange); }
 }
 
 header .nav-contact span { color: inherit; }
+
+/* Chapter 02 icons */
+#approach .principle-icon.icon-building { --icon: url("./official-icon-building.svg"); }
+#approach .principle-icon.icon-quality { --icon: url("./official-icon-quality.svg"); }
+#approach .principle-icon.icon-partnership { --icon: url("./official-icon-partnership.svg"); }
+
+@media (min-width: 721px) {
+  #approach .principles article { padding-left: 80px; }
+  #approach .principle-icon { width: 55px; height: 60px; }
+}
