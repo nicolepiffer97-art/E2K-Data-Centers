@@ -266,7 +266,6 @@ header .nav-contact span { color: inherit; }
   color: var(--muted);
 }
 .service-dot[aria-current="true"]::before {
-  width: 17px;
   color: var(--orange);
 }
 .service-playback {
